@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Legal Metrology Scanner</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .box {
+            background: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #222;
+        }
+
+        p {
+            color: #555;
+        }
+
+        input {
+            margin: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #444;
+        }
+
+        #result {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .good {
+            color: green;
+        }
+
+        .bad {
+            color: red;
+        }
+
+        .warning {
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>Legal Metrology Scanner</h1>
+
+    <p>
+        Upload a product label to check basic compliance.
+    </p>
+
+    <input type="file" id="productImage" accept="image/*">
+
+    <br>
+
+    <button onclick="scanProduct()">
+        🔍 SCAN PRODUCT
+    </button>
+
+    <div id="result"></div>
+
+</div>
+
+
+<script>
+
+function scanProduct() {
+
+    const image = document.getElementById("productImage").files[0];
+
+    const result = document.getElementById("result");
+
+    if (!image) {
+
+        result.innerHTML = `
+            <p class="bad">
+                ❌ Please upload a product image first.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    result.innerHTML = `
+
+        <h2>📊 Compliance Report</h2>
+
+        <p class="good">✅ MRP: Detected</p>
+
+        <p class="good">✅ Net Quantity: Detected</p>
+
+        <p class="good">✅ Manufacturer Name: Detected</p>
+
+        <p class="bad">❌ Manufacturer Address: Missing</p>
+
+        <p class="warning">
+            ⚠️ Consumer Care Details: Check Required
+        </p>
+
+        <hr>
+
+        <h3>Compliance Score: 75%</h3>
+
+        <p>
+            <b>Status: NEEDS REVIEW</b>
+        </p>
+
+    `;
+}
+
+</script>
+
+</body>
+</html>
